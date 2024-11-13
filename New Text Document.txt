@@ -1,0 +1,37 @@
+extended add activity ssd
+
+User       UI           AddPackageController    PackageService   PackageRepository
+ |          |                   |                      |                    |
+ | Initiates "Add Package"     |                      |                    |
+ |--------->|                   |                      |                    |
+ |          | addPackage()      |                      |                    |
+ |          |------------------>|                      |                    |
+ |          |                   | validatePackageData()|                    |
+ |          |                   |---------------------->|                    |
+ |          |                   |                      |                    |
+ |          |                   |  createPackage()     |                    |
+ |          |                   |---------------------->|                    |
+ |          |                   |                      | savePackage()      |
+ |          |                   |                      |------------------->|
+ |          |                   |                      | <---Success/fail---|
+ |          |                   | <-----Confirm result |                    |
+ |          | <---Final Result--|                      |                    |
+
+__________________________________________________________________________________________________
+
+Manager        UI          AddPackageController     PackageService     PackageRepository
+   |          |                  |                         |                   |
+   | Initiates "Add Multiple Packages"                     |                   |
+   |--------------->|              |                       |                   |
+   |          | addPackages(packageList)                    |                   |
+   |          |------------------->|                        |                   |
+   |          |                  |----Loop (for each package)---               |
+   |          |                  | validatePackageData()     |                 |
+   |          |                  |-------------------------->|                 |
+   |          |                  | createPackage()           |                 |
+   |          |                  |-------------------------->| savePackage()   |
+   |          |                  |                           |---------------->|
+   |          |                  |                           | <---Success/fail|
+   |          |                  |                           |                   |
+   |          | <---Final Result-|                           |                   |
+
